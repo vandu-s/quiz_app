@@ -1,0 +1,42 @@
+@import "../../variable";
+@import "../../mixin";
+
+.quiz__container {
+  @include flex__column;
+  h3,
+  p {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  & > p {
+    color: $purple;
+    font-weight: bold;
+    font-size: 14px;
+  }
+}
+
+.question__container {
+  max-width: 450px;
+  p {
+    margin-top: 20px;
+    margin-bottom: 25px;
+    font-size: 20px;
+    text-align: center;
+  }
+}
+.answerbtn__container {
+  @include flex__column;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.answerbtn__container {
+  button {
+    margin-bottom: 15px;
+  }
+}
+
+.score__container {
+  @include flex__column;
+  @include gap(20px);
+}

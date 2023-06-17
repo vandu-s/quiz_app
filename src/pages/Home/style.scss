@@ -2,9 +2,7 @@
 @import "../../mixin";
 
 .home__container {
-  @include flexbox;
-  @include flex_directions(column);
-  @include align_items(center);
+  @include flex__column;
   @include gap(18px);
 }
 

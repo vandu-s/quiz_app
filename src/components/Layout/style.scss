@@ -2,9 +2,7 @@
 @import "../../mixin";
 
 .layout__container {
-  @include flexbox;
-  @include justify_content(center);
-  @include align_items(center);
+  @include flex__column;
   margin-top: 20px;
 }
 

@@ -88,3 +88,10 @@
 @mixin gap($value) {
   gap: $value;
 }
+
+@mixin flex__column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
