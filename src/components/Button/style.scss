@@ -1,0 +1,39 @@
+@import "../../variable";
+@import "../../mixin";
+
+.btn {
+  font-size: 12px;
+  border: 0;
+  outline: 0;
+  padding: 12px;
+  min-width: 120px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  background-color: $white;
+  color: $purple;
+  transition: all 0.2 ease-in-out;
+  font-weight: 700;
+
+  &--purple {
+    background-color: $purple;
+    color: $white;
+  }
+  &--red {
+    background-color: $red;
+    color: $white;
+    &:focus {
+      box-shadow: 0 0 0 0.2rem rgba($red, 0.5);
+    }
+  }
+  &--green {
+    background-color: $green;
+    color: $white;
+    &:focus {
+      box-shadow: 0 0 0 0.2rem rgba($green, 0.5);
+    }
+  }
+  &--big {
+    min-width: 400px;
+  }
+}
