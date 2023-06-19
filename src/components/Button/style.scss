@@ -33,6 +33,11 @@
       box-shadow: 0 0 0 0.2rem rgba($green, 0.5);
     }
   }
+  &--disable {
+    background-color: $purple;
+    color: $white;
+  }
+
   &--big {
     min-width: 400px;
   }

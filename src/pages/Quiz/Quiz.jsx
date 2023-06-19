@@ -3,14 +3,20 @@ import Layout from "../../components/Layout/Layout";
 import Button from "../../components/Button/Button";
 import "./style.scss";
 import questions from "../data/data";
+
 const Quiz = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [showScore, setShowScore] = useState(false);
-  const handleAnswerButtonClick = (isCorrect) => {
+  const [selected, setSelected] = useState("");
+
+  const handleAnswerButtonClick = (isCorrect, answerText) => {
+    setSelected(answerText);
     if (isCorrect) {
       setScore(score + 1);
     }
+  };
+  const handleNextClick = () => {
     const nextQuestion = currentQuestion + 1;
     if (nextQuestion < questions.length) {
       setCurrentQuestion(nextQuestion);
@@ -18,20 +24,25 @@ const Quiz = () => {
       setShowScore(true);
     }
   };
+
+  const handlePrevClick = () => {
+    const prevQuestion = currentQuestion - 1;
+    if (prevQuestion > -1) {
+      setCurrentQuestion(prevQuestion);
+    }
+  };
+
   const handleStartAgain = () => {
-    setShowScore(0);
+    setShowScore(false);
     setCurrentQuestion(0);
   };
   return (
     <Layout>
       <div className="quiz__container">
-        {/* <h3>Score {currentQuestion}</h3>
-         */}
-        {/* <p>Question {currentQuestion} out of 10</p> */}
-
+        {!showScore && <p>Question {currentQuestion} out of 10</p>}
         {showScore ? (
           <div className="score__container">
-            <h3> You have Scored {score}</h3>
+            <h3>You have scored {score}</h3>
             <Button color="purple" onClick={handleStartAgain}>
               Start Again
             </Button>
@@ -44,12 +55,26 @@ const Quiz = () => {
                 <Button
                   big
                   key={answer.answerText}
-                  onClick={() => handleAnswerButtonClick(answer.isCorrect)}
-                  // color={answer.isCorrect?'green':'red'}
+                  color={selected === answer.answerText && "purple"}
+                  onClick={() =>
+                    handleAnswerButtonClick(answer.isCorrect, answer.answerText)
+                  }
                 >
                   {answer.answerText}
                 </Button>
               ))}
+            </div>
+            <div className="prenextbtn__container">
+              <Button
+                color="purple"
+                onClick={handlePrevClick}
+                // disable={currentQuestion === 0 && true}
+              >
+                Prev
+              </Button>
+              <Button color="purple" onClick={handleNextClick}>
+                Next
+              </Button>
             </div>
           </div>
         )}

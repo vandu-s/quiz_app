@@ -40,3 +40,19 @@
   @include flex__column;
   @include gap(20px);
 }
+
+.prenextbtn__container {
+  @include flexbox;
+  @include justify_content(space-between);
+}
+.btn__red {
+  background-color: $red;
+  color: $white;
+}
+// .selected {
+//   background-color: $green;
+//   color: $white;
+//   &:focus {
+//     border: 1px solid $green;
+//   }
+// }
