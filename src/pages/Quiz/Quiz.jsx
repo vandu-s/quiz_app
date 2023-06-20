@@ -10,6 +10,7 @@ const Quiz = () => {
   const [showScore, setShowScore] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const [answerStatus, setAnswerStatus] = useState("");
+
   const handleAnswerButtonClick = (isCorrect, answerText) => {
     setSelectedOption(answerText);
 
@@ -35,6 +36,8 @@ const Quiz = () => {
     setShowScore(false);
     setCurrentQuestion(0);
     setAnswerStatus("");
+    setScore(0);
+    setSelectedOption(null);
   };
 
   return (
