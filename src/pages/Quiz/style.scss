@@ -3,6 +3,7 @@
 
 .quiz__container {
   @include flex__column;
+  padding: 10px;
   h3,
   p {
     margin-top: 10px;
