@@ -8,43 +8,44 @@ const Quiz = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [showScore, setShowScore] = useState(false);
-  const [selected, setSelected] = useState("");
-
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [answerStatus, setAnswerStatus] = useState("");
   const handleAnswerButtonClick = (isCorrect, answerText) => {
-    setSelected(answerText);
+    setSelectedOption(answerText);
+
     if (isCorrect) {
       setScore(score + 1);
+      setAnswerStatus("correct");
+    } else {
+      setAnswerStatus("incorrect");
     }
   };
+
   const handleNextClick = () => {
     const nextQuestion = currentQuestion + 1;
     if (nextQuestion < questions.length) {
       setCurrentQuestion(nextQuestion);
+      setAnswerStatus("");
     } else {
       setShowScore(true);
-    }
-  };
-
-  const handlePrevClick = () => {
-    const prevQuestion = currentQuestion - 1;
-    if (prevQuestion > -1) {
-      setCurrentQuestion(prevQuestion);
     }
   };
 
   const handleStartAgain = () => {
     setShowScore(false);
     setCurrentQuestion(0);
+    setAnswerStatus("");
   };
+
   return (
     <Layout>
       <div className="quiz__container">
-        {!showScore && <p>Question {currentQuestion} out of 10</p>}
+        {!showScore && <p>Question {currentQuestion + 1} out of 10</p>}
         {showScore ? (
           <div className="score__container">
             <h3>You have scored {score}</h3>
             <Button color="purple" onClick={handleStartAgain}>
-              Start Again
+              Restart
             </Button>
           </div>
         ) : (
@@ -55,23 +56,24 @@ const Quiz = () => {
                 <Button
                   big
                   key={answer.answerText}
-                  color={selected === answer.answerText && "purple"}
                   onClick={() =>
                     handleAnswerButtonClick(answer.isCorrect, answer.answerText)
                   }
+                  color={`${
+                    selectedOption === answer.answerText
+                      ? answer.isCorrect
+                        ? "green"
+                        : "red"
+                      : answer.isCorrect && answerStatus === "incorrect" // Add condition to show both red and green colors
+                      ? "green"
+                      : ""
+                  }`}
                 >
                   {answer.answerText}
                 </Button>
               ))}
             </div>
             <div className="prenextbtn__container">
-              <Button
-                color="purple"
-                onClick={handlePrevClick}
-                // disable={currentQuestion === 0 && true}
-              >
-                Prev
-              </Button>
               <Button color="purple" onClick={handleNextClick}>
                 Next
               </Button>

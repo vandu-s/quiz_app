@@ -43,16 +43,10 @@
 
 .prenextbtn__container {
   @include flexbox;
-  @include justify_content(space-between);
+  @include justify_content(center);
 }
-.btn__red {
-  background-color: $red;
-  color: $white;
+
+.disable {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
-// .selected {
-//   background-color: $green;
-//   color: $white;
-//   &:focus {
-//     border: 1px solid $green;
-//   }
-// }
